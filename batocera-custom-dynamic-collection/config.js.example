@@ -1,0 +1,44 @@
+
+
+const config = {
+	//Directory containing pre-configured searches/filters
+	searchDir: '/userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/search',
+	
+	//How many collections to process in parallel
+	maxConcurrent: 2,
+	
+	//Location of node executable
+	// node: '/userdata/home/node/bin/node',
+	node: 'node',
+
+	//Location where custom collections are stored on the system.
+	//This config line not needed, it already defaults to `/userdata/system/configs/emulationstation/collections` behind the scenes
+	outputDir: '/userdata/system/configs/emulationstation/collections',
+
+	//Location where roms are stored on the system.
+	//This config line not needed either, has defaults
+	romsDir: '/userdata/roms',
+
+	collectionImagesDir: '',
+
+	//Control how collection title images are generated
+	//This config is not needed either, has defaults
+	renderText: {
+		canvasWidth: 640,
+		canvasHeight: 360,
+		fontSize: 142,
+		fontFamily: 'sans-serif',
+		textColor: 'white',
+		autoSize: true,  // Auto-size text to fit canvas by default
+		outputName: '',  // Will default to dash-spaced version of text if not provided
+		padding: 4,  // Padding around the text block
+		dropShadow: { color: 'rgba(0, 0, 0, 0.5)', offsetX: 4, offsetY: 4 }, // Default drop shadow options
+		stroke: { color: 'black', width: 2 }, // Default stroke options
+		outputDir: '.',  // Default output directory
+	},
+	
+};
+
+module.exports = config;
+
+

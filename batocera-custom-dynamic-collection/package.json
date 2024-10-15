@@ -1,0 +1,12 @@
+{
+  "name": "advanced-dynamic-lists-batocera",
+  "version": "1.0.0",
+  "bin": "createCustomCollection.js",
+  "optionalDependencies": {
+    "canvas": "^2.11.2"
+  },
+  "dependencies": {
+    "xml2js": "^0.6.2",
+    "yargs": "^17.7.2"
+  }
+}
