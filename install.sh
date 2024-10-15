@@ -54,8 +54,8 @@ if [ -d "/userdata/home/batocera-frosted-tools/" ]; then
 fi
 
 
-# Download the project from local server as zip
-echo "Downloading project from local server..."
+# Download the project as zip
+echo "Downloading project..."
 curl -L https://github.com/frostbitten/batocera-frosted-tools/archive/refs/heads/main.zip -o /tmp/batocera-frosted-tools.zip
 
 # Unzip to temporary directory
