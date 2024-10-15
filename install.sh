@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Check if --reinstall flag is present
-REINSTALL=false
-for arg in "$@"
-do
-    if [ "$arg" == "--reinstall" ]; then
-        REINSTALL=true
-    fi
-done
+# Source nvm if the script exists
+if [ -f "/etc/profile.d/nvm.sh" ]; then
+    echo "Sourcing nvm..."
+    source /etc/profile.d/nvm.sh
+fi
+
 
 # Create /userdata/home/ folder if it doesn't exist
 if [ ! -d "/userdata/home/" ]; then
@@ -46,10 +44,15 @@ else
 fi
 
 # Check if project is already installed
-if [ -d "/userdata/home/batocera-frosted-tools/" ] && [ "$REINSTALL" != "true" ]; then
-    echo "Project already installed. Use --reinstall to reinstall."
-    exit 0
+if [ -d "/userdata/home/batocera-frosted-tools/" ]; then
+    read -p "Project already installed. Do you want to reinstall? (y/N): " REINSTALL
+    REINSTALL=${REINSTALL:-n}
+    if [[ "$REINSTALL" != [yY] ]]; then
+        echo "Skipping reinstallation."
+        exit 0
+    fi
 fi
+
 
 # Download the project from local server as zip
 echo "Downloading project from local server..."

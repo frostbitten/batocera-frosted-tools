@@ -30,7 +30,7 @@ This is my personal collection of scripts and tools to help batocera work just a
 
 This feature uses a simple one-line installation:
 ```
-wget -qO- https://raw.githubusercontent.com/frostbitten/batocera-frosted-tools/main/install.sh | bash
+wget -qO install.sh https://raw.githubusercontent.com/frostbitten/batocera-frosted-tools/main/install.sh && bash ./install.sh
 ```
     
 This will:
