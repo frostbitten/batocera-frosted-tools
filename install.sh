@@ -57,13 +57,13 @@ curl -L https://github.com/frostbitten/batocera-frosted-tools/archive/refs/heads
 
 # Unzip to temporary directory
 echo "Unzipping project..."
-unzip -o /tmp/batocera-frosted-tools.zip -d /tmp/batocera-frosted-tools/
+unzip -o /tmp/batocera-frosted-tools.zip -d /tmp/
 
 # Copy files over to /userdata/home/batocera-frosted-tools, overwriting existing files but preserving others
 echo "Copying project files..."
 mkdir -p /userdata/home/batocera-frosted-tools/
-rsync -av --progress /tmp/batocera-frosted-tools/ /userdata/home/batocera-frosted-tools/
-rm -rf /tmp/batocera-frosted-tools/
+rsync -av --progress /tmp/batocera-frosted-tools-main/* /userdata/home/batocera-frosted-tools/
+rm -rf /tmp/batocera-frosted-tools-main/
 
 # Ensure config.js exists
 if [ ! -f "/userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/config.js" ]; then
@@ -71,12 +71,12 @@ if [ ! -f "/userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collect
     cp /userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/config.js.example /userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/config.js
 fi
 
-# Copy screensaver-start.sh
-echo "Setting up screensaver-start script..."
-cp /userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/scripts/screensaver-start.sh /userdata/system/configs/emulationstation/scripts/screensaver-start/
+# Symlink screensaver-start.sh
+echo "Setting up screensaver-start script as a symbolic link..."
+ln -sf /userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/scripts/screensaver-start.sh /userdata/system/configs/emulationstation/scripts/screensaver-start/screensaver-start.sh
 
 # Make the script executable
-chmod +x /userdata/system/configs/emulationstation/scripts/screensaver-start/screensaver-start.sh
+chmod +x /userdata/home/batocera-frosted-tools/batocera-custom-dynamic-collection/scripts/screensaver-start.sh
 
 # Run npm install to install dependencies (removing unnecessary package for Batocera compatibility)
 echo "Running npm install..."
@@ -85,6 +85,8 @@ npm install --omit=optional
 
 # Display message to user
 echo "INSTALLATION COMPLETE.
+
+
 
 If you need the collection title image rendering functionality,
 additional manual installation steps are required.
